@@ -1,66 +1,59 @@
-# DermaScan-AI-
-An AI-powered system that detects and classifies various skin diseases from images using deep learning and computer vision techniques.
+# DERMATECH: Skin Disease Assessment and Prediction
 
-# 🩺 DermaScan-AI  
-**An AI-powered system that detects and classifies various skin diseases from images using deep learning and computer vision techniques.**
+DERMATECH is a Streamlit web application that provides two main functionalities for users concerned about a potential skin condition:
+1.  **Assessment:** A questionnaire that uses the OpenAI API to provide a severity assessment based on the user's symptoms.
+2.  **Prediction:** An image classifier that predicts the type of skin disease from an uploaded image using a pre-trained Keras model.
 
----
+## 📁 Project Structure
 
-## 📘 Overview
-DermaScan-AI is a **deep learning-based skin disease detection and classification system** that helps identify different types of skin conditions from medical images.  
-Using convolutional neural networks (CNNs), the model learns visual patterns from skin lesion datasets and predicts the most probable disease class with high accuracy.  
-The goal is to assist dermatologists and healthcare professionals in **early diagnosis and faster decision-making**.
+The application is composed of three Python files:
 
----
+* `hi.py`: The main entry point for the Streamlit application, setting up the navigation sidebar.
+* `open.py`: Contains the **Assessment** tool, which collects user input via a form and uses the OpenAI API for severity analysis.
+* `open2.py`: Contains the **Prediction** tool, which loads a Keras model (`skin_disease_modelllll.h5`) to classify an uploaded image.
 
-## 🧠 Key Features
-- 🧴 **Automatic Skin Disease Detection:** Identifies multiple skin diseases from image input.  
-- 🔍 **Image Classification:** Classifies images into distinct categories such as acne, eczema, melanoma, psoriasis, etc.  
-- 🧰 **Deep Learning Model (CNN):** Built and trained using convolutional neural networks for efficient image recognition.  
-- 🧹 **Image Preprocessing:** Includes resizing, normalization, and augmentation for better model generalization.  
-- 📊 **Model Evaluation:** Visualizes accuracy, loss curves, and confusion matrix for detailed performance analysis.  
+## 🚀 Getting Started
 
----
+### Prerequisites
 
-## 🗂️ Dataset
-The dataset used consists of **dermatological images** labeled into various disease categories.  
-Each image includes:
-- High-resolution skin lesion images  
-- Corresponding disease label (e.g., acne, eczema, melanoma, etc.)
+You will need Python 3.x and a set of required libraries.
 
-*Dataset Source:* [Kaggle – Skin Disease Classification Dataset](https://www.kaggle.com/datasets/) *(or your dataset source if different)*
+* **OpenAI API Key**: To use the `Assessment` feature, you must have an OpenAI API key.
+* **Model File**: The image prediction feature requires a pre-trained Keras model named `skin_disease_modelllll.h5` to be present in the project's root directory.
 
----
+### Installation
 
-## ⚙️ Tech Stack
-- **Programming Language:** Python  
-- **Frameworks & Libraries:**  
-  - `TensorFlow`, `Keras` – Deep learning model development  
-  - `OpenCV`, `PIL` – Image preprocessing  
-  - `NumPy`, `Pandas` – Data handling  
-  - `Matplotlib`, `Seaborn` – Visualization and analysis  
+1.  **Clone the repository (if applicable) or save the files.**
 
----
+2.  **Install the required Python packages:**
+    ```bash
+    pip install streamlit openai numpy tensorflow pillow
+    ```
 
-## 🚀 Workflow
-1. **Data Collection & Preparation**  
-   - Import and label dataset images  
-   - Perform image augmentation and preprocessing  
-2. **Model Building**  
-   - Construct a CNN architecture using Keras/TensorFlow  
-   - Apply activation functions, dropout layers, and dense connections  
-3. **Model Training & Evaluation**  
-   - Split dataset into training and testing sets  
-   - Monitor accuracy and loss during training  
-   - Evaluate model on unseen test images  
-4. **Prediction**  
-   - Upload an image and get instant classification results with predicted probability  
+3.  **Set up your OpenAI API Key:**
+    The API key is currently hardcoded in `open.py`. For security, it's highly recommended to use environment variables instead.
 
----
+    *Current implementation in `open.py`:*
+    ```python
+    openai.api_key = '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' # **NOTE: REPLACE THIS WITH A SECURE METHOD**
+    ```
 
-## 📊 Results
-- Achieved high accuracy in disease classification.  
-- The model demonstrates strong generalization across different skin tones and image qualities.  
-- Graphs display consistent improvement in validation accuracy over training epochs.  
+    *Recommended secure method (using Streamlit Secrets):*
+    You would change the line in `open.py` to:
+    ```python
+    openai.api_key = st.secrets["OPENAI_API_KEY"]
+    ```
+    And then add your key to a `.streamlit/secrets.toml` file.
 
----
+4.  **Place the Model File:**
+    Ensure the trained model file is in the project directory:
+    ```
+    skin_disease_modelllll.h5
+    ```
+
+### Running the Application
+
+Execute the main file `hi.py` using Streamlit:
+
+```bash
+streamlit run hi.py
