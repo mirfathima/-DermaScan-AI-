@@ -35,7 +35,7 @@ You will need Python 3.x and a set of required libraries.
 
     *Current implementation in `open.py`:*
     ```python
-    openai.api_key = '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' # **NOTE: REPLACE THIS WITH A SECURE METHOD**
+    openai.api_key = '' # **NOTE: REPLACE THIS WITH A SECURE METHOD**
     ```
 
     *Recommended secure method (using Streamlit Secrets):*
